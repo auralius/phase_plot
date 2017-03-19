@@ -1,4 +1,4 @@
-function phase_plot(sys, intial_values, range)
+function phase_plot(sys, intial_values, range, scale)
 % Phase portrait plot for SECOND and THIRD order ODE
 % sys is the system transfer function
 %
@@ -7,10 +7,17 @@ function phase_plot(sys, intial_values, range)
 %
 % range is the minimum and the maximum boundary for the states
 %     e.g: 3rd order system, with states: x1, x2, and x3
-%     [x1_min x2_max; x2_min x2_max; x3_min x3_max]
+%     [x1_min x1_max; x2_min x2_max; x3_min x3_max]
+%
+% scale is used to adjust the dimension of the arrows
+%     this corresponds to the AutoScale property of the quiver function
 
 % References:
 %     http://matlab.cheme.cmu.edu/2011/08/09/phase-portraits-of-a-system-of-odes/
+
+if nargin < 5
+    scale = 0.5;
+end
 
 %% Solve the ODE
 [num, den] = tfdata(sys);
@@ -43,7 +50,8 @@ if n == 2
     end
 
     % Drawing
-    quiver(X1, X2, u, v, 'r'); 
+    h = quiver(X1, X2, u, v, 'r'); 
+    h.AutoScaleFactor = scale;
     axis tight equal;
     hold on;
 
@@ -74,7 +82,8 @@ elseif n == 3
     end
 
     % Drawing
-    quiver3(X1, X2, X3, u, v, w, 'r'); 
+    h = quiver3(X1, X2, X3, u, v, w, 'r'); 
+    h.AutoScaleFactor = scale;
     axis tight equal;
     hold on;
 
