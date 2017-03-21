@@ -1,6 +1,6 @@
-function phase_plot(sys, intial_values, range, scale)
+function phase_plot(sys, intial_values, range, simtime, scale)
 % Phase portrait plot for SECOND and THIRD order ODE
-% sys is the system transfer function
+% sys is the system transfer function (in s-domain)
 %
 % intial_values is ithe initial states of th system (vector of nx1)
 %     where n is the order of the system
@@ -9,13 +9,15 @@ function phase_plot(sys, intial_values, range, scale)
 %     e.g: 3rd order system, with states: x1, x2, and x3
 %     [x1_min x1_max; x2_min x2_max; x3_min x3_max]
 %
+% simtime is the simulation time
+%
 % scale is used to adjust the dimension of the arrows
 %     this corresponds to the AutoScale property of the quiver function
 
 % References:
 %     http://matlab.cheme.cmu.edu/2011/08/09/phase-portraits-of-a-system-of-odes/
 
-if nargin < 5
+if nargin < 6
     scale = 0.5;
 end
 
@@ -29,7 +31,7 @@ if (n < 2 || n > 3)
     return
 end
 
-[t, x] = ode45(@f, 0:0.001:50, intial_values); % ode45 at 1 khz
+[~, x] = ode45(@f, 0:0.001:simtime, intial_values); % ode45 at 1 khz
 
 %% Vector field
 % 2nd order ODE
@@ -56,9 +58,11 @@ if n == 2
     hold on;
 
     plot(x(:,1), x(:,2), 'b', 'LineWidth', 3);
+    axis tight equal;
+    xlim(range(1,:));
+    ylim(range(2,:));
     xlabel('x_1')
     ylabel('x_2')
-    axis tight equal;
     hold off;
     
 % 3rd order ODE
@@ -84,10 +88,13 @@ elseif n == 3
     % Drawing
     h = quiver3(X1, X2, X3, u, v, w, 'r'); 
     h.AutoScaleFactor = scale;
-    axis tight equal;
     hold on;
 
     plot3(x(:,1), x(:,2), x(:,3), 'b', 'LineWidth', 3);
+    axis tight equal;
+    xlim(range(1,:));
+    ylim(range(2,:));
+    zlim(range(3,:));
     xlabel('x_1')
     ylabel('x_2')
     zlabel('x_3')
