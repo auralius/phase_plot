@@ -1,5 +1,5 @@
-function phase_plot2(f, intial_values, range, simtime, scale, interactive)
-% Phase portrait plot for a SECOND order ODE
+function phase_plot_interactive(f, range, simtime, scale)
+% Interactive phase portrait plot for a SECOND order ODE
 % f is the system function that will besolve using ode45, it must return 
 %     a column vector (2x1).
 %
@@ -17,12 +17,7 @@ if nargin < 6
     scale = 0.5;
 end
 
-%% Solve the ODE
-[~, x] = ode45(f, 0:0.001:simtime, intial_values); % ode45 at 1 khz
-
 %% Vector field
-% 2nd order ODE
-
     x1 = linspace(range(1, 1), range(1, 2), 10);
     x2 = linspace(range(2, 1), range(2, 2), 10);
 
@@ -39,15 +34,26 @@ end
     end
 
     % Drawing
-    h = quiver(X1, X2, u, v, 'r'); 
-    h.AutoScaleFactor = scale;
+    h = axes;
+    hq = quiver(X1, X2, u, v, 'r'); 
+    hq.AutoScaleFactor = scale;
     hold on;
-    plot(x(:,1), x(:,2), 'b', 'LineWidth', 3);
     xlabel('x_1')
     ylabel('x_2')
     axis tight equal;
     xlim(range(1,:));
     ylim(range(2,:));
-    hold off;
+
+%%  FOr current initial values
+    while ishandle(h)
+        try
+            x0 = ginput(1);
+        catch
+            break;
+        end
+        
+        [~, x] = ode45(f, 0:0.001:simtime, x0); % ode45 at 1 khz
+        plot(x(:,1), x(:,2), 'b', 'LineWidth', 2);
+    end
 end
 

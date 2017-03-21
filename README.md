@@ -43,3 +43,7 @@ ttp://matlab.cheme.cmu.edu/2011/08/09/phase-portraits-of-a-system-of-odes/
 ```
 
 ![alt tag](https://github.com/auralius/phase_plot/blob/master/example.png)
+
+# phase_plot_interactive   
+![alt tag](https://github.com/auralius/phase_plot/blob/master/interactive.gif)
+
