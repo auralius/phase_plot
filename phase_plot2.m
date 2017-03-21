@@ -49,11 +49,5 @@ end
     xlim(range(1,:));
     ylim(range(2,:));
     hold off;
-
-
-%fracparts=regexp(evalc('sys'),'([^\n]*)\n[ ]*-[-]+[ ]*\n([^\n]*)','tokens');
-%TFlatex=['$$G(s)=\frac{' fracparts{1}{1} '}{' fracparts{1}{2} '}$$'];
-%title(TFlatex, 'interpreter','latex');
-
 end
 
