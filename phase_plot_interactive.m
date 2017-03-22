@@ -9,11 +9,11 @@ function phase_plot_interactive(f, range, simtime, scale)
 %
 % scale is used to adjust the dimension of the arrows
 %     this corresponds to the AutoScale property of the quiver function
-
+%
 % References:
 %     http://matlab.cheme.cmu.edu/2011/08/09/phase-portraits-of-a-system-of-odes/
 
-if nargin < 6
+if nargin < 4
     scale = 0.5;
 end
 
@@ -34,17 +34,17 @@ end
     end
 
     % Drawing
-    h = axes;
+    h = figure;
     hq = quiver(X1, X2, u, v, 'r'); 
     hq.AutoScaleFactor = scale;
     hold on;
-    xlabel('x_1')
-    ylabel('x_2')
+    xlabel('$x_1$', 'interpreter', 'latex')
+    ylabel('$x_2$', 'interpreter', 'latex')
     axis tight equal;
     xlim(range(1,:));
     ylim(range(2,:));
 
-%%  FOr current initial values
+%%  For current initial values
     while ishandle(h)
         try
             x0 = ginput(1);
@@ -52,7 +52,7 @@ end
             break;
         end
         
-        [~, x] = ode45(f, 0:0.001:simtime, x0); % ode45 at 1 khz
+        [~, x] = ode45(f, 0:0.01:simtime, x0); % ode45 at 1 khz
         plot(x(:,1), x(:,2), 'b', 'LineWidth', 2);
     end
 end

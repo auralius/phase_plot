@@ -1,4 +1,4 @@
-function phase_plot2(f, intial_values, range, simtime, scale, interactive)
+function phase_plot2(f, intial_values, range, simtime, scale)
 % Phase portrait plot for a SECOND order ODE
 % f is the system function that will besolve using ode45, it must return 
 %     a column vector (2x1).
@@ -9,7 +9,7 @@ function phase_plot2(f, intial_values, range, simtime, scale, interactive)
 %
 % scale is used to adjust the dimension of the arrows
 %     this corresponds to the AutoScale property of the quiver function
-
+%
 % References:
 %     http://matlab.cheme.cmu.edu/2011/08/09/phase-portraits-of-a-system-of-odes/
 
@@ -43,8 +43,8 @@ end
     h.AutoScaleFactor = scale;
     hold on;
     plot(x(:,1), x(:,2), 'b', 'LineWidth', 3);
-    xlabel('x_1')
-    ylabel('x_2')
+    xlabel('$x_1$', 'interpreter', 'latex')
+    ylabel('$x_2$', 'interpreter', 'latex')
     axis tight equal;
     xlim(range(1,:));
     ylim(range(2,:));

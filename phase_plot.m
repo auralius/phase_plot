@@ -13,7 +13,7 @@ function phase_plot(sys, intial_values, range, simtime, scale)
 %
 % scale is used to adjust the dimension of the arrows
 %     this corresponds to the AutoScale property of the quiver function
-
+%
 % References:
 %     http://matlab.cheme.cmu.edu/2011/08/09/phase-portraits-of-a-system-of-odes/
 
@@ -61,8 +61,8 @@ if n == 2
     axis tight equal;
     xlim(range(1,:));
     ylim(range(2,:));
-    xlabel('x_1')
-    ylabel('x_2')
+    xlabel('$x_1$', 'interpreter', 'latex')
+    ylabel('$x_2$', 'interpreter', 'latex')
     hold off;
     
 % 3rd order ODE
@@ -95,9 +95,9 @@ elseif n == 3
     xlim(range(1,:));
     ylim(range(2,:));
     zlim(range(3,:));
-    xlabel('x_1')
-    ylabel('x_2')
-    zlabel('x_3')
+    xlabel('$x_1$', 'interpreter', 'latex')
+    ylabel('$x_2$', 'interpreter', 'latex')
+    zlabel('$x_3$', 'interpreter', 'latex')
     view([1 1 1]);
     hold off;
 end
