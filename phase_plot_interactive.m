@@ -1,4 +1,4 @@
-function phase_plot_interactive(f, range, simtime, scale)
+function phase_plot_interactive(f, range, simtime, figtitle, scale)
 % Interactive phase portrait plot for a SECOND order ODE
 % f is the system function that will besolve using ode45, it must return 
 %     a column vector (2x1).
@@ -13,9 +13,14 @@ function phase_plot_interactive(f, range, simtime, scale)
 % References:
 %     http://matlab.cheme.cmu.edu/2011/08/09/phase-portraits-of-a-system-of-odes/
 
-if nargin < 4
+if nargin < 5
     scale = 0.5;
+elseif nargin < 4
+    scale = 0.5;
+    figtitle = '';
 end
+
+set(0,'defaulttextInterpreter','latex') %latex axis labels
 
 %% Vector field
     x1 = linspace(range(1, 1), range(1, 2), 10);
@@ -43,6 +48,7 @@ end
     axis tight equal;
     xlim(range(1,:));
     ylim(range(2,:));
+    title(figtitle, 'interpreter', 'latex');
 
 %%  For current initial values
     while ishandle(h)
