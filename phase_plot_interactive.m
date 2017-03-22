@@ -1,4 +1,4 @@
-function phase_plot_interactive(f, range, simtime, figtitle, scale)
+function phase_plot_interactive(f, range, simtime, figtitle, resolution, scale)
 % Interactive phase portrait plot for a SECOND order ODE
 % f is the system function that will besolve using ode45, it must return 
 %     a column vector (2x1).
@@ -7,24 +7,35 @@ function phase_plot_interactive(f, range, simtime, figtitle, scale)
 %
 % simtime is the simulation time
 %
+% reslotion is used to define how many arrwos will be drawn
+%     (horizontal resolution x vertical resolution)
+%
 % scale is used to adjust the dimension of the arrows
 %     this corresponds to the AutoScale property of the quiver function
 %
 % References:
 %     http://matlab.cheme.cmu.edu/2011/08/09/phase-portraits-of-a-system-of-odes/
 
+if nargin < 6
+    scale = 0.5;
+end
+
 if nargin < 5
     scale = 0.5;
-elseif nargin < 4
+    resolution = [20 20];
+end
+
+if nargin < 4
     scale = 0.5;
+    resolution = [20 20];
     figtitle = '';
 end
 
 set(0,'defaulttextInterpreter','latex') %latex axis labels
 
 %% Vector field
-    x1 = linspace(range(1, 1), range(1, 2), 10);
-    x2 = linspace(range(2, 1), range(2, 2), 10);
+    x1 = linspace(range(1, 1), range(1, 2), resolution(1));
+    x2 = linspace(range(2, 1), range(2, 2), resolution(2));
 
     [X1, X2] = meshgrid(x1, x2);
     u = zeros(size(X1));
@@ -43,8 +54,8 @@ set(0,'defaulttextInterpreter','latex') %latex axis labels
     hq = quiver(X1, X2, u, v, 'r'); 
     hq.AutoScaleFactor = scale;
     hold on;
-    xlabel('$x_1$', 'interpreter', 'latex')
-    ylabel('$x_2$', 'interpreter', 'latex')
+    xlabel('$x$', 'interpreter', 'latex')
+    ylabel('$y$', 'interpreter', 'latex')
     axis tight equal;
     xlim(range(1,:));
     ylim(range(2,:));
