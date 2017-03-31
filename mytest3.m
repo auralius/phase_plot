@@ -3,7 +3,7 @@ function mytest3()
     clear all;
     clc;
    
-    phase_plot_interactive(@f, [-10 10; -10 10], 10)
+    phase_plot_2_interactive(@f, [-10 10; -10 10], 10)
 end
 
 %% Callback function for the ODE solver

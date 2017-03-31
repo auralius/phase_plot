@@ -43,6 +43,10 @@ function phase_plot2(f, intial_values, range, simtime, scale)
 
 ![alt tag](https://github.com/auralius/phase_plot/blob/master/example.png)
 
-# phase_plot_interactive   
-![alt tag](https://github.com/auralius/phase_plot/blob/master/interactive.gif)
+# phase_plot_1_interactive   
+![alt tag](https://github.com/auralius/phase_plot/blob/master/interactive1.gif)
+
+# phase_plot_2_interactive   
+![alt tag](https://github.com/auralius/phase_plot/blob/master/interactive2.gif)
+
 

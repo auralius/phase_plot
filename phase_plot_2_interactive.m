@@ -1,14 +1,14 @@
-function phase_plot_interactive(f, range, simtime, figtitle, resolution, scale)
+function phase_plot_2_interactive(f, range, simtime, figtitle, resolution, scale)
 % Interactive phase portrait plot for a SECOND order ODE
 % f is the system function that will besolve using ode45, it must return 
 %     a column vector (2x1).
 %
-% intial_values is ithe initial states of th system (vector of 2x1)
+% range is the limits for the axes ([xmin xmax; ymin ymax])
 %
 % simtime is the simulation time
 %
-% reslotion is used to define how many arrwos will be drawn
-%     (horizontal resolution x vertical resolution)
+% resolution is used to define how many arrwos will be drawn
+%     (horizontal resolution (the x-axis) x vertical resolution (the y-axis))
 %
 % scale is used to adjust the dimension of the arrows
 %     this corresponds to the AutoScale property of the quiver function
@@ -71,6 +71,7 @@ set(0,'defaulttextInterpreter','latex') %latex axis labels
         
         [~, x] = ode45(f, 0:0.01:simtime, x0); % ode45 at 1 khz
         plot(x(:,1), x(:,2), 'b', 'LineWidth', 2);
+        plot(x(1,1), x(1,2), 'om')
     end
 end
 

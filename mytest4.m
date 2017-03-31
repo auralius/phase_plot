@@ -3,7 +3,7 @@ function mytest4()
     clear all;
     clc;
    
-    phase_plot_interactive(@f, [-10 10; -10 10], 30, ...
+    phase_plot_2_interactive(@f, [-10 10; -10 10], 30, ...
         {'$\dot{x_1}=x_2$' '$\dot{x_2}=0.01*x_2^3-x_1$'}, [30 30])
 end
 
