@@ -46,9 +46,9 @@ set(0,'defaulttextInterpreter','latex') %latex axis labels
     t = 0; 
     for i = 1:numel(X)
         X_DOT = f(T(i), X(i));
-        Vmod = sqrt(X_DOT^2 + dt^2);
-        u(i) = dt/Vmod;
-        v(i) = X_DOT/Vmod;
+        theta = atan(X_DOT);        
+        u(i) = cos(theta);
+        v(i) = sin(theta);
     end
 
     % Drawing
@@ -58,7 +58,7 @@ set(0,'defaulttextInterpreter','latex') %latex axis labels
     hold on;
     xlabel('Time', 'interpreter', 'latex')
     ylabel('$x$', 'interpreter', 'latex')
-    %axis tight equal;
+    axis tight equal;
     xlim([0 simtime]);
     ylim(range);
     title(figtitle, 'interpreter', 'latex');
