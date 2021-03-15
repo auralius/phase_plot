@@ -13,7 +13,7 @@ function phase_plot2(f, intial_values, range, simtime, scale)
 % References:
 %     http://matlab.cheme.cmu.edu/2011/08/09/phase-portraits-of-a-system-of-odes/
 
-if nargin < 6
+if nargin < 5
     scale = 0.5;
 end
 
